@@ -9,7 +9,7 @@ if [ -n "$RETHINKDB_PASSWORD" ]; then
   readonly DUMP_PWD="--password-file /tmp/pwd"
 fi
 
-BACKUP_FILE="--file /dockup/${RETHINK_BACKUP_NAME}-$(date +%A).tar.gz"
+BACKUP_FILE="--file /dockup/${RETHINK_BACKUP_NAME}"
 
 RETHINK_BACKUP_CMD="rethinkdb dump ${CONNECT} ${DUMP_PWD} ${BACKUP_FILE} ${RETHINKDB_DUMP_EXTRA_OPTS}"
 
