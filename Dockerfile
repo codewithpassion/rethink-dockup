@@ -2,7 +2,8 @@ FROM wetransform/dockup:latest
 MAINTAINER Dominik Fretz <dominik@openrov.com>
 
 # install RethinkDB and drivers
-RUN echo "deb http://download.rethinkdb.com/apt trusty main" | tee /etc/apt/sources.list.d/rethinkdb.list && \
+RUN apt-get install -y wget && \
+    echo "deb http://download.rethinkdb.com/apt trusty main" | tee /etc/apt/sources.list.d/rethinkdb.list && \
     wget -qO- https://download.rethinkdb.com/apt/pubkey.gpg | apt-key add - && \
     apt-get update && \
     apt-get install -y rethinkdb && \
