@@ -18,6 +18,7 @@ echo "Restoring RethinkDB dump..."
 eval "time $RETHINK_RESTORE_CMD"
 
 rc=$?
+./rethinkclean.sh
 
 if [ -n "$RETHINKDB_PASSWORD" ]; then
   rm /tmp/pwd

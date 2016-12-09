@@ -12,8 +12,8 @@ RUN apt-get install -y wget && \
 ADD /scripts /dockup/
 RUN chmod 755 /dockup/*.sh
 
-ENV PATHS_TO_BACKUP /dockup/rethink-dump-*.tar.gz
-ENV RETHINK_BACKUP_NAME rethink-dump
+ENV PATHS_TO_BACKUP /dockup/rethink-dump.tar.gz
+ENV RETHINK_BACKUP_NAME rethink-dump.tar.gz
 ENV BEFORE_BACKUP_CMD ./rethinkdump.sh
 ENV AFTER_BACKUP_CMD ./rethinkclean.sh
 ENV AFTER_RESTORE_CMD ./rethinkrestore.sh
