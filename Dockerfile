@@ -1,19 +1,20 @@
 FROM wetransform/dockup:latest
-MAINTAINER Simon Templer <simon@wetransform.to>
+MAINTAINER Dominik Fretz <dominik@openrov.com>
 
-# install MongoDB shell & tools
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 && \
-  echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.2 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.2.list && \
-  apt-get update && \
-  apt-get install -y mongodb-org-shell mongodb-org-tools
+# install RethinkDB and drivers
+RUN echo "deb http://download.rethinkdb.com/apt trusty main" | tee /etc/apt/sources.list.d/rethinkdb.list && \
+    wget -qO- https://download.rethinkdb.com/apt/pubkey.gpg | apt-key add - && \
+    apt-get update && \
+    apt-get install -y rethinkdb && \
+    pip install rethinkdb
 
 ADD /scripts /dockup/
 RUN chmod 755 /dockup/*.sh
 
-ENV PATHS_TO_BACKUP /dockup/mongodump
-ENV MONGO_BACKUP_NAME mongodump
-ENV BEFORE_BACKUP_CMD ./mongodump.sh
-ENV AFTER_BACKUP_CMD ./mongoclean.sh
-ENV AFTER_RESTORE_CMD ./mongorestore.sh
-ENV MONGODB_HOST mongodb
-ENV MONGODB_PORT 27017
+ENV PATHS_TO_BACKUP /dockup/rethink-dump
+ENV RETHINK_BACKUP_NAME rethink-dump
+ENV BEFORE_BACKUP_CMD ./rethinkdump.sh
+ENV AFTER_BACKUP_CMD ./rethinkclean.sh
+ENV AFTER_RESTORE_CMD ./rethinkrestore.sh
+ENV RETHINKDB_HOST localhost
+ENV RETHINKDB_PORT 28015

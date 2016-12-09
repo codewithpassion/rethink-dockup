@@ -1,6 +1,8 @@
 dockup-mongo
 ============
 
+RETHINKDB_PASSWORD
+
 [![Docker Hub Badge](https://img.shields.io/badge/Docker-Hub%20Hosted-blue.svg)](https://hub.docker.com/r/wetransform/dockup-mongo/)
 
 Docker image to backup/restore your MongoDB to AWS S3.
