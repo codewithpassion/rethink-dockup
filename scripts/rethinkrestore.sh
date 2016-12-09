@@ -9,7 +9,7 @@ if [ -n "$RETHINKDB_PASSWORD" ]; then
   readonly DUMP_PWD="--password-file /tmp/pwd"
 fi
 
-BACKUP_FILE="--file /dockup/${RETHINK_BACKUP_NAME}"
+BACKUP_FILE="/dockup/${RETHINK_BACKUP_NAME}"
 
 RETHINK_RESTORE_CMD="rethinkdb restore ${CONNECT} ${DUMP_PWD} ${BACKUP_FILE} ${RETHINKDB_DUMP_EXTRA_OPTS}"
 
